@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcin Dymowski — wizytówka</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Marcin Dymowski</h1>
+        <p class="podtytul">
+            Uczeń czwartej klasy technikum, kierunek technik programista.
+            Uczę się tworzenia aplikacji webowych.
+        </p>
+
+        <nav>
+            <a href="#o-mnie">O mnie</a>
+            <a href="#umiejetnosci">Umiejętności</a>
+            <a href="#kontakt">Kontakt</a>
+            <button type="button" id="przelacznik-motywu">Ciemny motyw</button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ============ O mnie ============ -->
+        <section id="o-mnie">
+            <h2>O mnie</h2>
+            <p>
+                Programowaniem zajmuję się od trzeciej klasy. Najbardziej
+                interesuje mnie strona serwerowa aplikacji — to, co dzieje się
+                zanim użytkownik cokolwiek zobaczy.
+            </p>
+            <p>
+                W wolnym czasie gram w koszykówkę i składam klawiatury
+                mechaniczne. Uważam, że dobry kod to taki, który da się
+                przeczytać po pół roku i nadal wiedzieć, o co chodzi.
+            </p>
+            <p>
+                Ta strona powstała jako powtórka HTML, CSS i JavaScriptu —
+                bez żadnych frameworków, wszystko napisane ręcznie.
+            </p>
+        </section>
+
+        
+        <section id="umiejetnosci">
+            <h2>Umiejętności</h2>
+            <p>Lista poniżej jest generowana przez JavaScript z tablicy:</p>
+
+
+            <ul id="lista-umiejetnosci"></ul>
+        </section>
+
+        <section id="kontakt">
+            <h2>Kontakt</h2>
+            <p>Napisz do mnie — formularz sprawdza dane i wyświetla potwierdzenie.</p>
+
+            <form id="formularz-kontakt">
+                <div class="pole">
+                    <label for="imie">Imię</label>
+                    <input type="text" id="imie" name="imie" placeholder="Jak masz na imię?">
+                </div>
+
+                <div class="pole">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="adres@example.com">
+                </div>
+
+                <div class="pole">
+                    <label for="temat">Temat</label>
+                    <select id="temat" name="temat">
+                        <option value="">— wybierz —</option>
+                        <option value="wspolpraca">Współpraca</option>
+                        <option value="pytanie">Pytanie</option>
+                        <option value="inne">Inne</option>
+                    </select>
+                </div>
+
+                <div class="pole">
+                    <label for="tresc">Wiadomość</label>
+                    <textarea id="tresc" name="tresc" rows="4" placeholder="Treść wiadomości"></textarea>
+                </div>
+
+                <button type="submit">Wyślij</button>
+            </form>
+
+            <div id="komunikat"></div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>2026 — Marcin Dymowski. Zadanie MB3 z przedmiotu
+           Programowanie aplikacji zaawansowanych webowych.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
