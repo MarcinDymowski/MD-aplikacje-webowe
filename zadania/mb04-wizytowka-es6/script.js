@@ -1,16 +1,35 @@
 const umiejetnosci = [
-    { nazwa: "HTML",         poziom: 4, kategoria: "frontend" },
-    { nazwa: "CSS",          poziom: 4, kategoria: "frontend" },
-    { nazwa: "JavaScript",   poziom: 3, kategoria: "frontend" },
-    { nazwa: "SQL",          poziom: 3, kategoria: "backend" },
-    { nazwa: "C#",           poziom: 4, kategoria: "programowanie" },
-    { nazwa: "C++",          poziom: 4, kategoria: "programowanie" },
-    { nazwa: "Git",          poziom: 3, kategoria: "narzędzia" },
-    { nazwa: "Arduino",      poziom: 4, kategoria: "elektronika" },
-    { nazwa: "ESP32",        poziom: 4, kategoria: "elektronika" },
-    { nazwa: "Kotlin",       poziom: 2, kategoria: "programowanie" },
-    { nazwa: "Praca w zespole", poziom: 3, kategoria: "umiejętności miękkie" }
+    { nazwa: "HTML", poziom: 4, kategoria: "frontend" },
+    { nazwa: "CSS", poziom: 4, kategoria: "frontend" },
+    { nazwa: "JavaScript", poziom: 3, kategoria: "frontend" },
+    { nazwa: "SQL", poziom: 3, kategoria: "backend" },
+    { nazwa: "C#", poziom: 4, kategoria: "programowanie" },
+    { nazwa: "C++", poziom: 4, kategoria: "programowanie" },
+    { nazwa: "Git", poziom: 3, kategoria: "narzedzia" },
+    { nazwa: "Arduino", poziom: 4, kategoria: "elektronika" },
+    { nazwa: "ESP32", poziom: 4, kategoria: "elektronika" },
+    { nazwa: "Kotlin", poziom: 2, kategoria: "programowanie" },
+    { nazwa: "Praca w zespole", poziom: 3, kategoria: "miekkie" }
 ];
+
+const filtrujPoKategorii = (lista, kategoria) =>
+    kategoria === "wszystkie"
+        ? [...lista]
+        : lista.filter(u => u.kategoria === kategoria);
+    
+const sredniPoziom = (lista) => {
+    if (lista.length === 0) {
+        return 0;
+    }
+
+    const suma = lista.reduce((razem, { poziom }) => razem + poziom, 0);
+    return Math.round((suma / lista.length) * 10) / 10;
+};
+
+const podsumowanie = (lista) =>
+    lista.length === 0
+        ? "Brak umiejętności w tej kategorii."
+        : `Umiejętności: ${lista.length} · średni poziom: ${sredniPoziom(lista)}`;
 
 const budujListe = (lista) =>
     lista
@@ -23,20 +42,31 @@ const budujListe = (lista) =>
         .join("");
 
 const listaEl = document.querySelector("#lista-umiejetnosci");
-listaEl.innerHTML = budujListe(umiejetnosci);
+const podsumowanieEl = document.querySelector("#podsumowanie");
+const filtryEl = document.querySelector("#filtry");
 
+const pokazUmiejetnosci = (kategoria = "wszystkie") => {
+    const wybrane = filtrujPoKategorii(umiejetnosci, kategoria);
 
-const pokazUmiejetnosci = (lista) => {
-    const kontener = document.querySelector("#lista-umiejetnosci");
-
-    for (const nazwa of lista) {
-        const element = document.createElement("li");
-        element.textContent = nazwa;
-        kontener.appendChild(element);
-    }
+    listaEl.innerHTML = budujListe(wybrane);
+    podsumowanieEl.textContent = podsumowanie(wybrane);
 };
 
-// pokazUmiejetnosci(umiejetnosci);
+filtryEl.addEventListener("click", (event) => {
+    const przycisk = event.target.closest("button");
+
+    if (!przycisk) {
+        return;
+    }
+
+    filtryEl.querySelectorAll("button").forEach(b => b.classList.remove("aktywny"));
+    przycisk.classList.add("aktywny");
+
+    pokazUmiejetnosci(przycisk.dataset.kategoria);
+});
+
+pokazUmiejetnosci();
+
 
 
 const formularz = document.querySelector("#formularz-kontakt");
