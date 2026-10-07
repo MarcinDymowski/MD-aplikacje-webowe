@@ -12,6 +12,19 @@ const umiejetnosci = [
     { nazwa: "Praca w zespole", poziom: 3, kategoria: "umiejętności miękkie" }
 ];
 
+const budujListe = (lista) =>
+    lista
+        .map(({ nazwa, poziom }) => `
+            <li>
+                <span class="nazwa">${nazwa}</span>
+                <span class="poziom" title="Poziom ${poziom} z 5">${"●".repeat(poziom)}${"○".repeat(5 - poziom)}</span>
+            </li>
+        `)
+        .join("");
+
+const listaEl = document.querySelector("#lista-umiejetnosci");
+listaEl.innerHTML = budujListe(umiejetnosci);
+
 
 const pokazUmiejetnosci = (lista) => {
     const kontener = document.querySelector("#lista-umiejetnosci");
@@ -23,7 +36,7 @@ const pokazUmiejetnosci = (lista) => {
     }
 };
 
-pokazUmiejetnosci(umiejetnosci);
+// pokazUmiejetnosci(umiejetnosci);
 
 
 const formularz = document.querySelector("#formularz-kontakt");
