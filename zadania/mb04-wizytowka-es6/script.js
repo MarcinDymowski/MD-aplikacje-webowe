@@ -5,6 +5,13 @@ const listaEl = document.querySelector("#lista-umiejetnosci");
 const podsumowanieEl = document.querySelector("#podsumowanie");
 const filtryEl = document.querySelector("#filtry");
 
+/**
+ * Przerysowuje listę umiejętności i podsumowanie dla wybranej kategorii.
+ *
+ * @param {string} kategoria - nazwa kategorii albo "wszystkie"
+ * @returns {void}
+ */
+
 const pokazUmiejetnosci = (kategoria = "wszystkie") => {
     const wybrane = filtrujPoKategorii(umiejetnosci, kategoria);
 
@@ -32,6 +39,13 @@ pokazUmiejetnosci();
 const formularz = document.querySelector("#formularz-kontakt");
 const komunikat = document.querySelector("#komunikat");
 
+/**
+ * Wyświetla komunikat pod formularzem.
+ *
+ * @param {string} tresc - tekst do pokazania
+ * @param {"blad"|"sukces"} rodzaj - decyduje o kolorze
+ * @returns {void}
+ */
 
 const pokazKomunikat = (tresc, rodzaj) => {
     komunikat.textContent = tresc;
@@ -81,6 +95,17 @@ przycisk.addEventListener("click", () => {
 });
 
 const inspiracjeEl = document.querySelector("#inspiracje");
+
+/**
+ * Pobiera listę użytkowników z publicznego API.
+ *
+ * fetch nie zgłasza błędu przy statusie 404 czy 500 — dlatego
+ * sprawdzamy response.ok samodzielnie.
+ *
+ * @param {string} adres - pełny adres zasobu
+ * @returns {Promise<Array<Object>>} tablica użytkowników
+ * @throws {Error} gdy serwer odpowie statusem innym niż 2xx
+ */
 
 const pobierzUzytkownikow = async (adres) => {
     const odpowiedz = await fetch(adres);
