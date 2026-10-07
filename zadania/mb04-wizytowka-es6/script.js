@@ -1,11 +1,15 @@
 const umiejetnosci = [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "SQL",
-    "Git",
-    "C++",
-    "C#"
+    { nazwa: "HTML",         poziom: 4, kategoria: "frontend" },
+    { nazwa: "CSS",          poziom: 4, kategoria: "frontend" },
+    { nazwa: "JavaScript",   poziom: 3, kategoria: "frontend" },
+    { nazwa: "SQL",          poziom: 3, kategoria: "backend" },
+    { nazwa: "C#",           poziom: 4, kategoria: "programowanie" },
+    { nazwa: "C++",          poziom: 4, kategoria: "programowanie" },
+    { nazwa: "Git",          poziom: 3, kategoria: "narzędzia" },
+    { nazwa: "Arduino",      poziom: 4, kategoria: "elektronika" },
+    { nazwa: "ESP32",        poziom: 4, kategoria: "elektronika" },
+    { nazwa: "Kotlin",       poziom: 2, kategoria: "programowanie" },
+    { nazwa: "Praca w zespole", poziom: 3, kategoria: "umiejętności miękkie" }
 ];
 
 
