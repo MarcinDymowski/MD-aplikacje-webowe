@@ -65,6 +65,11 @@ app.post("/echo", (req, res) => {
     res.json({ odebrano: req.body });
 });
 
+/** GET /blad — celowo zgłasza błąd; służy do sprawdzania obsługi błędów. */
+app.get("/blad", () => {
+    throw new Error("Testowy błąd");
+});
+
 /** Nieznany adres: JSON dla tras z danymi, strona HTML dla reszty. */
 app.use((req, res) => {
     const czyDane = ["/gry", "/szukaj", "/statystyki"].some((p) => req.url.startsWith(p));
@@ -75,6 +80,12 @@ app.use((req, res) => {
     }
 
     res.status(404).send("<h1>404 — nie ma takiej strony</h1>");
+});
+
+/** Błąd w trasie: szczegóły do terminala, krótki komunikat do użytkownika. */
+app.use((err, req, res, next) => {
+    console.error("Błąd:", err.message);
+    res.status(500).json({ blad: "Błąd serwera" });
 });
 
 app.listen(PORT, () => {
